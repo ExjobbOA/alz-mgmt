@@ -1,4 +1,5 @@
-using './main.bicep'
+using '../../../../../../templates/core/governance/mgmt-groups/int-root/main.bicep'
+
 
 // General Parameters
 param parLocations = [
