@@ -26,7 +26,7 @@ param platformConnectivityConfig = {
   waitForConsistencyCounterBeforeCustomRoleDefinitions: 10
   waitForConsistencyCounterBeforePolicyAssignments: 40
   waitForConsistencyCounterBeforeRoleAssignments: 40
-  waitForConsistencyCounterBeforeSubPlacement: 10
+  waitForConsistencyCounterBeforeSubPlacement: 40
 }
 
 // Only specify the parameters you want to override - others will use defaults from JSON files
