@@ -191,6 +191,7 @@ param hubNetworks = [
     }
     ddosProtectionPlanSettings: {
       deployDdosProtectionPlan: false
+      name: 'ddos-alz-${parLocations[0]}'
     }
   }
 ]
