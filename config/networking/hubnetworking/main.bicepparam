@@ -3,7 +3,6 @@ using '../../../platform/templates/networking/hubnetworking/main.bicep'
 // General Parameters
 param parLocations = [
   'swedencentral'
-  ''
 ]
 param parGlobalResourceLock = {
   name: 'GlobalResourceLock'
