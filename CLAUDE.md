@@ -6,9 +6,15 @@
 
 ## Project Status: Active Development
 
-This platform is a work-in-progress thesis project. The high-level architecture (dual-repo split, Deployment Stacks, OIDC auth, ALZ policy library) is settled. The implementation details — file structure, parameter patterns, workflow steps — are actively evolving.
+This platform is a work-in-progress thesis project. The high-level architecture (dual-repo split, Deployment Stacks, OIDC auth, ALZ policy library) is settled. The centralized parameters pattern (`platform.json` as single source of truth) is implemented and stable.
 
 **When working in this codebase:** Trust the architectural patterns described below, but always read the actual code for current details. If something in this doc contradicts what you see in the files, the files win. Check `records.md` in the templates repo for the latest architecture decisions and troubleshooting history.
+
+## Tenant Onboarding
+
+New tenants are onboarded using `scripts/onboard.ps1` from the **templates repo**. The script creates GitHub environments, runs the bootstrap ARM deployment, and writes UAMI client IDs back into this repo automatically. See `scripts/README.md` in the templates repo for prerequisites and usage.
+
+Before running `onboard.ps1` on a tenant that had a previous/failed deployment, run `scripts/cleanup.ps1` first to return Azure to a blank slate.
 
 ## Architecture Overview
 
@@ -199,3 +205,4 @@ Update `LOCATION`, `LOCATION_PRIMARY` (and optionally `LOCATION_SECONDARY`) in `
 3. **Deployment quota**: ARM has a deployment history limit per scope. The pipeline auto-cleans old deployments before each run.
 4. **Eventual consistency**: Entra ID propagation delays can cause transient RBAC failures. Use `@batchSize(1)` and `waitForConsistencyCounter*` params.
 5. **Cancel trap**: The retry logic in `bicep-deploy` treats cancellation as a transient failure and retries. To truly stop: cancel the GitHub Runner, don't just cancel the deployment.
+6. **Onboarding on a dirty tenant**: Running `onboard.ps1` when the identity RG or UAMIs already exist causes concurrent FIC write failures. Always run `cleanup.ps1` first on a previously-bootstrapped tenant. See `records.md` Feb 26 in the templates repo.
