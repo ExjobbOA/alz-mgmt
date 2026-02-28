@@ -3,7 +3,7 @@
 using '../../platform/bootstrap/plumbing/main.bicep'
 
 @description('Subscription where the identity RG + UAMIs will be created (e.g. management subscription).')
-param bootstrapSubscriptionId = '<BOOTSTRAP_SUBSCRIPTION_ID>'
+param bootstrapSubscriptionId = '6f051987-3995-4c82-abb3-90ba101a0ab4'
 
 @description('Region for identity resources.')
 param location = 'swedencentral'
