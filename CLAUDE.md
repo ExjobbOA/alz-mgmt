@@ -78,7 +78,10 @@ Fields:
 - `LOCATION_SECONDARY`: secondary region (e.g. `northeurope`), or `""` for single-region
 - `INTERMEDIATE_ROOT_MANAGEMENT_GROUP_ID`: `alz` (or your chosen root MG name)
 - `MANAGEMENT_GROUP_ID`: the tenant root MG GUID
-- `SUBSCRIPTION_ID_MANAGEMENT`, `SUBSCRIPTION_ID_CONNECTIVITY`, `SUBSCRIPTION_ID_IDENTITY`, `SUBSCRIPTION_ID_SECURITY`: platform subscription IDs
+- `PLATFORM_MODE`: `simple` | `full` — controls which MG child tiers are deployed
+- `SUBSCRIPTION_ID_MANAGEMENT`, `SUBSCRIPTION_ID_CONNECTIVITY`, `SUBSCRIPTION_ID_IDENTITY`, `SUBSCRIPTION_ID_SECURITY`: platform subscription IDs (full mode — each gets its own subscription)
+- `SUBSCRIPTION_ID_PLATFORM`: single subscription used for all platform services (simple mode)
+- All six subscription ID fields are always present in `platform.json` regardless of mode. In simple mode the four full-mode fields are set equal to `SUBSCRIPTION_ID_PLATFORM` — this keeps the schema stable so switching modes is just changing `PLATFORM_MODE` and updating the relevant IDs, not adding/removing keys.
 - `NETWORK_TYPE`: `none` | `hubnetworking` | `virtualwan`
 - `ENABLE_TELEMETRY`: `true` | `false`
 - `SECURITY_CONTACT_EMAIL`: email for MDFC/service health alerts (can be empty)
