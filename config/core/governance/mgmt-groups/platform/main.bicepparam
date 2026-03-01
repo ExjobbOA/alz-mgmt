@@ -1,25 +1,25 @@
 using '../../../../../platform/templates/core/governance/mgmt-groups/platform/main.bicep'
 
-var location                    = readEnvironmentVariable('LOCATION_PRIMARY')
-var locationSecondary           = readEnvironmentVariable('LOCATION_SECONDARY', '')
-var enableTelemetry             = bool(readEnvironmentVariable('ENABLE_TELEMETRY', 'true'))
-var intRootMgId                 = readEnvironmentVariable('INTERMEDIATE_ROOT_MANAGEMENT_GROUP_ID')
-var platformMode                = readEnvironmentVariable('PLATFORM_MODE', 'full')
-var subIdMgmt                   = readEnvironmentVariable('SUBSCRIPTION_ID_MANAGEMENT')
-var subIdPlatform               = readEnvironmentVariable('SUBSCRIPTION_ID_PLATFORM', '')
-var includeSubMgPolicies        = platformMode == 'simple'
-var platformSubscriptions       = (platformMode == 'simple' && subIdPlatform != '') ? [subIdPlatform] : []
-var rgLogging                   = 'rg-alz-logging-${location}'
-var lawName                     = 'law-alz-${location}'
-var uamiName                    = 'uami-alz-${location}'
-var dcrChangeTracking           = 'dcr-alz-changetracking-${location}'
-var dcrVmInsights               = 'dcr-alz-vminsights-${location}'
-var dcrMdfcSql                  = 'dcr-alz-mdfcsql-${location}'
-var lawResourceId               = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.OperationalInsights/workspaces/${lawName}'
-var uamiResourceId              = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${uamiName}'
+var location = readEnvironmentVariable('LOCATION_PRIMARY')
+var locationSecondary = readEnvironmentVariable('LOCATION_SECONDARY', '')
+var enableTelemetry = bool(readEnvironmentVariable('ENABLE_TELEMETRY', 'true'))
+var intRootMgId = readEnvironmentVariable('INTERMEDIATE_ROOT_MANAGEMENT_GROUP_ID')
+var platformMode = readEnvironmentVariable('PLATFORM_MODE', 'full')
+var subIdMgmt = readEnvironmentVariable('SUBSCRIPTION_ID_MANAGEMENT')
+var subIdPlatform = readEnvironmentVariable('SUBSCRIPTION_ID_PLATFORM', '')
+var includeSubMgPolicies = platformMode == 'simple'
+var platformSubscriptions = (platformMode == 'simple' && subIdPlatform != '') ? [subIdPlatform] : []
+var rgLogging = 'rg-alz-logging-${location}'
+var lawName = 'law-alz-${location}'
+var uamiName = 'uami-alz-${location}'
+var dcrChangeTracking = 'dcr-alz-changetracking-${location}'
+var dcrVmInsights = 'dcr-alz-vminsights-${location}'
+var dcrMdfcSql = 'dcr-alz-mdfcsql-${location}'
+var lawResourceId = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.OperationalInsights/workspaces/${lawName}'
+var uamiResourceId = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${uamiName}'
 var dcrChangeTrackingResourceId = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.Insights/dataCollectionRules/${dcrChangeTracking}'
-var dcrVmInsightsResourceId     = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.Insights/dataCollectionRules/${dcrVmInsights}'
-var dcrMdfcSqlResourceId        = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.Insights/dataCollectionRules/${dcrMdfcSql}'
+var dcrVmInsightsResourceId = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.Insights/dataCollectionRules/${dcrVmInsights}'
+var dcrMdfcSqlResourceId = '/subscriptions/${subIdMgmt}/resourceGroups/${rgLogging}/providers/Microsoft.Insights/dataCollectionRules/${dcrMdfcSql}'
 
 param parLocations = [
   location
@@ -33,7 +33,7 @@ param platformConfig = {
   managementGroupName: 'platform'
   managementGroupParentId: intRootMgId
   managementGroupIntermediateRootName: intRootMgId
-  managementGroupDisplayName: 'Platform'
+  managementGroupDisplayName: 'Platform (test)'
   managementGroupDoNotEnforcePolicyAssignments: []
   managementGroupExcludedPolicyAssignments: []
   customerRbacRoleDefs: []
