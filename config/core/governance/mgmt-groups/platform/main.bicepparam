@@ -51,6 +51,17 @@ param platformConfig = {
 }
 
 param parPolicyAssignmentParameterOverrides = {
+  // Enable-DDoS-VNET is included via parIncludeSubMgPolicies in simple mode but ships with
+  // a placeholder ddosPlan (/subscriptions/00000000-.../placeholder). Without a real DDoS
+  // Protection Plan deployed, the Modify effect injects the placeholder into every VNet and
+  // causes LinkedAuthorizationFailed. Set to Audit so the policy reports but does not modify.
+  'Enable-DDoS-VNET': {
+    parameters: {
+      effect: {
+        value: 'Audit'
+      }
+    }
+  }
   'Deploy-VM-ChangeTrack': {
     parameters: {
       dcrResourceId: {
