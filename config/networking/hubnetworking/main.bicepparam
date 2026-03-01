@@ -110,34 +110,8 @@ param hubNetworks = [
         useRemoteGateways: false
       }
     ]
-    subnets: [
-      {
-        name: 'AzureBastionSubnet'
-        addressPrefix: '10.1.0.64/26'
-      }
-      {
-        name: 'GatewaySubnet'
-        addressPrefix: '10.1.0.128/27'
-      }
-      {
-        name: 'AzureFirewallSubnet'
-        addressPrefix: '10.1.0.0/26'
-      }
-      {
-        name: 'AzureFirewallManagementSubnet'
-        addressPrefix: '10.1.0.192/26'
-      }
-      {
-        name: 'DNSPrivateResolverInboundSubnet'
-        addressPrefix: '10.1.0.160/28'
-        delegation: 'Microsoft.Network/dnsResolvers'
-      }
-      {
-        name: 'DNSPrivateResolverOutboundSubnet'
-        addressPrefix: '10.1.0.176/28'
-        delegation: 'Microsoft.Network/dnsResolvers'
-      }
-    ]
+    // See primary hub above for subnet reference — same logic applies (10.1.x.x range).
+    subnets: []
     azureFirewallSettings: {
       deployAzureFirewall: false
       azureFirewallName: 'afw-alz-${locationSecondary}'
